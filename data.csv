@@ -1,0 +1,21 @@
+TransactionID,Date,CustomerID,ProductID,ProductName,Category,Quantity,UnitPrice,TotalAmount,PaymentMethod,StoreLocation
+32c642ed-5e03-47ce-b1a0-057aa2aeee81,2023-08-03,CUST-9479,PROD-024,Backpack,Grocery,5,83.81,419.05,Credit Card,Online
+c66eb8e9-96b8-4104-a45e-249560cae056,2023-10-27,CUST-5455,PROD-184,Backpack,Sports,2,80.04,160.08,Debit Card,Airport
+b9fc7774-b5b3-4d17-8d85-ef21eb07a2bf,2023-04-13,CUST-9386,PROD-069,Designer Watch,Jewelry,3,203.07,609.21,Cash,Airport
+de86bc5d-d3b6-4ca4-9eb3-4911ac41b3bf,2023-06-13,CUST-8935,PROD-099,USB-C Hub,Footwear,2,163.11,326.22,Mobile Pay,Downtown
+27887231-d6b0-4512-b5ac-e4d51771f8b1,2023-04-23,CUST-5333,PROD-187,Silk Scarf,Footwear,3,263.81,791.43,Credit Card,Mall
+2ccc179e-96e4-43a5-a5b3-d01d40de5b8f,2023-04-04,CUST-9028,PROD-164,Wireless Headphones,Home,1,148.03,148.03,Cash,Airport
+6baf9b36-86b0-452a-b3e1-7c5b4e709454,2023-05-23,CUST-6084,PROD-169,Designer Watch,Footwear,4,80.78,323.12,Credit Card,Suburban
+918e4a7a-29d0-4565-99d9-b6abf8e54be5,2023-10-28,CUST-3482,PROD-130,Backpack,Electronics,1,160.3,160.3,Credit Card,Airport
+eb1a1966-7f90-4857-b5d6-0804ae34518e,2023-04-13,CUST-9349,PROD-138,Graphic Tablet,Jewelry,2,189.88,379.76,Mobile Pay,Mall
+00c46a24-9b48-4a11-970f-86141d081839,2023-02-28,CUST-7610,PROD-088,Gaming Mouse,Accessories,5,54.26,271.3,Credit Card,Downtown
+548ee460-a48e-4c9e-9608-38457356e609,2023-04-07,CUST-5455,PROD-149,Novel,Books,2,233.22,466.44,Debit Card,Mall
+51ca3710-5619-4e82-85cb-fca64ced4587,2023-11-21,CUST-2611,PROD-148,Toaster,Furniture,2,64.87,129.74,Mobile Pay,Airport
+6231ba17-7017-46ec-b0ab-29803a3087ca,2023-12-10,CUST-2858,PROD-033,Smartphone,Electronics,5,257.59,1287.95,Mobile Pay,Online
+f1b7be73-b414-48d6-8281-a45ce360b6f3,2023-10-06,CUST-9473,PROD-131,Standing Desk,Footwear,4,58.61,234.44,Mobile Pay,Online
+2d5d1227-fd79-4f26-81c0-e54514e57efa,2023-10-14,CUST-9431,PROD-190,VR Headset,Electronics,5,134.54,672.7,Credit Card,Suburban
+f7e99b7d-50a6-4f91-86e2-bb146b0d7be4,2023-05-21,CUST-2521,PROD-194,Gaming Console,Jewelry,1,199.6,199.6,Mobile Pay,Online
+7ce149b7-388e-44fa-8a9f-fa779c9aa885,2023-03-12,CUST-4275,PROD-042,Coffee Maker,Footwear,5,133.29,666.45,Debit Card,Online
+fff306b2-c7d8-4b79-8abe-e77e93172e08,2023-02-18,CUST-5150,PROD-197,External SSD,Sports,1,209.98,209.98,Debit Card,Downtown
+f31f18ac-c0cb-4798-a3f4-6061f57038cd,2023-08-24,CUST-5113,PROD-015,Action Camera,Grocery,4,259.03,1036.12,Credit Card,Mall
+9ae7cc2a-7e16-4b8e-ab90-da08f24f9729,2023-07-13,CUST-8633,PROD-064,Sneakers,Jewelry,1,118.74,118.74,Credit Card,Mall
