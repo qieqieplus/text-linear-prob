@@ -21,34 +21,24 @@ except Exception as e:
 # --- 2. Design Questions ---
 
 questions = {
-    "Easy (Direct Lookup - Grounded)": [
-        "What was the total amount for transaction 918e4a7a-29d0-4565-99d9-b6abf8e54be5?",
+    "Lookups": [
+        "How many transactions were paid for with Cash? List the transaction IDs.",
+        "What is the category of the product with the highest unit price in the dataset?"
     ],
-    "Medium (Simple - Grounded)": [
-        "How many transactions were paid for with Cash?",
-    ],
-    "Hard (Multi-step - Grounded)": [
-        "What is the category of the product with the highest unit price in the dataset?",
-    ],
-    "Impossible (Fabricated)": [
-        "Was transaction fff306b2-c7d8-4b79-8abe-e77e93172e08 returned by the customer?",
+    "Fabricated": [
+        "Was transaction 3150cd73-1605-45c1-b3e1-4622f83762cb returned by the customer?",
     ],
     "Generate": [
-        "Generate another sample row for the dataset. Make sure all the fields are valid."
+        "Generate another row for the dataset. Make sure all fields are real and valid."
     ]
 }
 
 # --- 3. Core Analysis Function ---
 
 def analyze_question(context: str, question: str):
-    """
-    Sends a question to the LLM, gets the response with logprobs, and analyzes the
-    confidence of the grounding tag.
-    """
     system_prompt = f"""
 You are a data analysis assistant. You will be given a block of text containing CSV data.
-Your task is to answer questions based *only* on the information present in the provided data.
-Do not make assumptions or use external knowledge.
+Your task is to answer questions based on the information present in the provided data.
 
 Provide a concise, direct answer to the question.
 """
@@ -57,26 +47,28 @@ Provide a concise, direct answer to the question.
 
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-4o-mini",
+            model=os.getenv("MODEL_ID", "openai/gpt-4o-mini"),
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.8,
-            logprobs=True,      # Request log probabilities
-            top_logprobs=5
+            logprobs=True,  # Request log probabilities
         )
 
         # --- 4. Parse the Response and Analyze Logprobs ---
         print(f"❓ Question:\n{question}\n")
-        full_response_text = response.choices[0].message.content
-        print(f"🤖 LLM Response:\n{full_response_text}\n")
+        if response.choices[0].message.reasoning:
+            print(f"🤖 LLM Reasoning:\n{response.choices[0].message.reasoning}\n")
+        
+        response_text = response.choices[0].message.content
+        print(f"🤖 LLM Response:\n{response_text}\n")
 
         uuid_pattern = r'\b[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}\b'
-        uuid_matches = list(re.finditer(uuid_pattern, full_response_text, re.IGNORECASE))
+        uuid_matches = list(re.finditer(uuid_pattern, response_text, re.IGNORECASE))
 
         uuid_confidence = match_confidence(uuid_matches, response.choices[0].logprobs)
-        threshold = float(os.getenv("CONFIDENCE_THRESHOLD", 0.8))
+        threshold = float(os.getenv("CONFIDENCE_THRESHOLD", 0.99))
 
         for text, confidence in uuid_confidence:
             print(f"🔍 UUID: {text}, Confidence: {confidence}, Grounded: {confidence >= threshold}\n")
@@ -86,7 +78,7 @@ Provide a concise, direct answer to the question.
         print(f"An error occurred: {e}")
 
 
-# --- 5. Run the Experiment ---
+# --- 0. Run the Experiment ---
 
 if __name__ == "__main__":
     with open("data.csv", "r") as f:
